@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Content container-->
+<div class="about-container">
+
+    <!--Top section of the page to contain an image-->
+    <header class="image-header-container">
+        <div class="slider">
+            <div class="about-slide">
+                <div class="slide-content">
+                <!--Tect within image-->
+                    <div class="slide-content-text">
+                        <h1 class="slide-content-title">About <span class="about-header">BahWorks</span></h1>
+                        <p class="slide-content-paragraph">BahWorks is a new web app created to help individuals, or building firms find professionals to complete their planning applications or project design work. There are a number of aspects to the app, so take a look below and see everything we do!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--Site overview with blue background and snippets about different aspects of the site-->
+    <section class="about-intro-container">
+        <div class="about-intro">
+            <div class="about-intro-section about-intro-jobs">
+                <i class="fa fa-laptop"></i>
+                <h2 class="about-intro-heading">Jobs</h2>
+                <p class="about-intro-paragraph">Whether you are looking for a BAH Professional or looking for freelance work, BahWork connects you so you can complete your project!</p>
+            </div>
+            <div class="about-intro-section about-intro-blog">
+                <i class="fa fa-pencil"></i>
+                <h2 class="about-intro-heading">Blog</h2>
+                <p class="about-intro-paragraph">The blog, here at BahWorks contains information you may want and need regarding everything from building planning, to the latest Bah Packages.</p>
+            </div>
+            <div class="about-intro-section about-intro-shop">
+                <i class="fa fa-shopping-cart"></i>
+                <h2 class="about-intro-heading">Shop</h2>
+                <p class="about-intro-paragraph">Buy the latest equipment or software to launch your career as a surveyor/ Bah Professional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--Section containing a few paragraphs about the advantages of restering an account with the site. -->
+    <section class="about-overview-container">
+        <div class="about-overview">
+            <div class="about-registration">
+                <h3 class="about-registration-heading">Why Register?</h3>
+                <p class="about-registration-paragraph">We aim to give all users of site value. You can view blogs, and buy products to get you started in your freelance career. To get the maximum value from the site, you will need to  register an account with us.</p>
+                <p class="about-registration-paragraph">Registering an account will allow you to upload a job, and allow others to upload files for your project. Look through the <a href="{% url 'jobs-home' %}">jobs</a> that have been uploaded, and find the ones that are for you.</p>
+                <p class="about-registration-paragraph">Demonstrate your knowledge of the industry by uploading blogs or comment on others.</p>
+                <p class="about-registration-paragraph"><a href="{% url 'register' %}">Register now</a> and get started today!</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

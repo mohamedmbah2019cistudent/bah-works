@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Container for the content-->
+<div class="job-blog-container">
+
+	<!--Container for the content-->
+	<div class="blog-detail-container">
+
+		<!--Container for the article content-->
+		<article class="blog-article-content">
+			<!--If statement to check for messages-->
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-primary">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+			<h1 class="article-title">{{ object.title }}</h1>
+			<p class="ml-1">Blog uploaded by <a href="{% url 'public_profile' post.author.profile.id %}">{{ object.author }}</a> on {{ object.date_posted|date:"dS F, Y" }}</p>
+			<div class="article-metadata">
+				<!--If statement to display different buttons depending on which user is logged in-->
+				<!--If user on the page is the user who created the blog, the following buttons will be displayed allowing the user to update or delete the post-->
+				{% if object.author == user %}
+					<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+						<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+					</div>
+				<!--If the user logged in is not the creator of the current blog then a button will appear allowing the user to click on the profile page of the user who created the blog.-->
+				{% else %}
+					<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'public_profile' object.author.username %}">View User Profile</a>
+					</div>
+				{% endif %}
+			</div>
+			<img class="blog-image" src="{{ object.image.url }}">
+			<div class="main-blog-content">
+				<p class="article-intro">{{ object.intro }}</p>
+				<!--'linebreaksbr' will divide the plain text inputted by the user into separate files in the content on this page-->
+				<p class="article-content">{{ object.content|linebreaksbr }}</p>
+			</div>
+
+			<!--Comments section for the jobs-->
+			<section class="job-blog-comments">
+				<h3 class="comments-header">Comments</h3>		
+				<div class="leave-comment-button">
+					<a class="btn btn-primary" href="{% url 'post-comment-create' object.id %}">Leave a comment</a>
+				</div>
+				<!--Comments section for the blogs-->
+				<div class="comments">
+					{% for comment in post.blog_comments.all %}  
+						<div class="single-comment">                
+							<p class="comment-author-date"><span class="comment-author">{{ comment.author }}</span> - {{ comment.comment_date|date:"dS F, Y" }}</p>
+							<p class="comment">{{ comment.comment|linebreaksbr }}</p>
+												
+							{% if user.is_authenticated and comment.author == user or user.is_superuser %}
+							<div class="btn-group">
+								<div class="mt-3 mb-3">
+									<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-comment-update' comment.id %}">Update</a>
+									<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-comment-delete' comment.id %}">Delete</a>
+								</div>
+							</div>
+							{% endif %}
+						</div>
+										
+					{% empty %}                           
+						<p class="alert alert-primary">There have so far been no comments left for this blog</p>         
+					{% endfor %}
+				</div>
+			</section>
+		</article>
+
+		<!--The aside will have a list of the current blog-->
+		<aside class="blog-aside">
+			<div class="blog-aside-blogs">
+				<div class="blog-aside-intro-text">
+					<h2 class="blog-aside-intro-text-heading">More from the blog</h2>
+					<p class="blog-aside-intro-text-paragraph">Most recently uploaded blogs</p>
+				</div>
+				<div class="blog-card-container">
+				<!--For loop to use the following code of reach of the blogs in the list-->
+					{% for post in posts %}
+						<article class="blog-details-other">
+							<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+							<div class="blog-intro">
+								<div class="blog-details-post-text">
+									<a class="blog-details-post-author mr-2" href="{% url 'public_profile' post.author.profile.id %}">{{ post.author }}</a>
+									<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+								</div>
+								<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+							</div>
+						</article>
+					{% endfor %}
+				</div>
+				<a href="{% url 'blog-home' %}" class="btn btn-primary btn-sm">See more...</a>
+			</div>
+		</aside>
+
+	</div>
+
+</div>
+{% endblock content %}
+

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!--Container for the overall content of the shop page-->
+    <div class="shop-home-container">
+
+        <!--Heading-->
+        <div class="shop-page-header">
+            <h1 class="shop-page-title">Your Shopping Cart</h1>
+        </div>
+
+        <!--Container for the products section-->
+        <div class="products-container">
+
+            <!--For loop to use the following code for each of the products on the page-->
+            {% for item in cart_items %}
+                <div class="product">
+                    <div class="product-image">
+                        <img src="{{ item.product.image.url }}">
+                    </div>
+                    <div class="product-text">
+                        <p class="product-price ml-1">{{item.quantity}} no. {{ item.product.product_name }}'s at £{{ item.product.product_price }}.</p>
+                        <!--Form to allow the user to amend their cart i.e. add or remove numbers of an item-->
+                        <form method="POST" action="{% url 'adjust_cart' item.id %}">
+                        {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleInputAmount">Amend quantity?</label>
+                                <div class="input-group">
+                                    <input name="quantity" type="number" min="0" max="999" class="form-control">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Amend</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!--Following displays the cart total and the link to the checkout-->
+        <div class="cart-total-row">
+            <!--If statement to display content depending on whether there are products in the users cart or not-->
+            {% if total == 0 %}
+                <p class="cart-paragraph">You currently do not have any items in your cart. Visit the <a href="{% url 'shop-home' %}">shop</a>.</p>
+            {% else %}
+                <p class="cart-total-row-paragraph">Current Total: <span class="ml-3 currency-total">£{{ item.product.price }}{{ total }}</span></p>
+                <p class="cart-paragraph">Need to add more products to your cart? Return to the <a href="{% url 'shop-home' %}">shop</a>.</p>
+                <a href="{% url 'checkout' %}" class="btn btn-primary" role="button">Checkout</a>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!--Container to set the width for the content-->
+    <div class="shop-home-container">
+
+        <!--Top of the page header-->
+        <div class="shop-page-header">
+            <h1 class="shop-page-title"><i class="fa fa-shopping-cart mr-3"></i> BahWorks Shop</h1>
+        </div>
+
+        <!--If statement to check for messages-->
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-primary">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+
+        <!--Container div for the products-->
+        <div class="products-container">
+
+            <!--For loop contains the code to be used for each of the products-->
+            {% for product in products %}
+                <div class="product">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}">
+                    </div>
+                    <div class="product-text">
+                        <h2 class="product-header">{{ product.product_name }}</h2>
+                        <p class="product-description">{{ product.product_description }}</p>
+                        <p class="product-price ml-1"><span class="product-currency">£ </span>{{ product.product_price }}</p>
+                        
+                        <!--Form that allows the user to specify an amount. The add button adds that quantity to the users cart-->
+                        <form method="POST" action="{% url 'add_to_cart' product.id %}" >
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}"/>
+                            <div class="input-group">
+                                <input name="quantity" type="number" min="1" max="999" class="form-control product-input" placeholder="Quantity">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">Add</button>
+                                </span>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <!--If statement to display page numbers if the number of blogs exceeds six-->
+        {% if is_paginated %}
+            <div class="paginate-buttons ml-3">
+
+                <!--Display first and previous button if page exists-->
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-primary" href="?page=1">First</a>
+                    <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <!--Page numbers with links to the relative pages-->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                        <a class="btn btn-primary" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                <!--Display next and last button if page exists-->
+                {% if page_obj.has_next %}
+                    <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            </div>        
+        {% endif %} 
+
+    </div>
+    
+{% endblock content %}
+

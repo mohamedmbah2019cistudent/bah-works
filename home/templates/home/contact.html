@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!--Container for the page content-->
+<div class="container">
+
+    <!--Form section used on all pages with a form to control width-->
+	<div class="form-section">
+
+        <!--Form to take information to be sent to the site owner-->
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+				<legend class="contact-form-title border-bottom mb-10">Contact Us</legend>
+
+                <!--Crispy form used to style the form in a professional manor-->
+				{{ form|crispy }}
+                <div class="contact-email-form">
+                    <label class="contact-label">Email*</label>
+                    <input class="email-contact" type="text" name="email">
+                </div>
+                <div class="contact-message-form">
+                    <label class="contact-label">Message*</label>
+                    <textarea class="message-contact" name="message"></textarea>
+                </div>
+                <input class="btn btn-primary btn-block" type="submit"/>
+			</fieldset>          
+        </form>
+        <div class="border-top"></div>
+        <div class="border-top pt-3">
+			<small class="text-muted">Didn't mean to come here? Return to the <a href="{% url 'home' %}">home</a> page.</small>
+		</div>
+    </div>
+</div>
+{% endblock content %}

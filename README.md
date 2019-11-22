@@ -1,7 +1,5 @@
-# Code Institute
+# BahWorks Fullstack Development Milestone Project - Code Institute
 
-Welcome Mohamed Marifa Bah ,
+# BahWorks is a fictional website that allows individuals or businesses looking to have professional.
 
-We have preinstalled all of the tools you need to get started.
-
-Happy coding!
+[![Build Status](https://travis-ci.org/mohamedmbah2019cistudent/bah-works.svg?branch=master)](https://travis-ci.org/mohamedmbah2019cistudent/bah-works)

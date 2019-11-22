@@ -1,0 +1,1908 @@
+/*Font style imports*/
+
+/*Colours to use in site*/
+/*
+blue colour - #007bff
+dark grey - #343a40
+White - #FFFFFF
+
+
+Background-color to pages - #ced4da
+*/
+
+/*Importing the fonts */
+
+/* Open Sans font to be used throughout the site */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+/* Titillium web to be used for the headers throughout the site */
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
+
+/* Global styles styles*/
+
+* {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Titillium Web", sans-serif;
+}
+
+/*Alert messages to be used throughout the site. !important used to overide the bootstrap style*/
+.alert {
+    margin: 20px 0 !important;
+}
+
+
+
+
+
+
+
+/*---------- Navbar ----------*/
+.navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    padding: 0;
+    box-shadow: 2px 2px 10px #000000;
+    z-index: 1;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.nav-link i {
+    font-size: 1.2em;
+}
+
+.nav-item-cart-amount {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+/*Bootstrap buttons*/
+.nav-buttons {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-container {
+    width: 90%;
+    max-width: 1100px;
+}
+
+.navbar-logo-dropdown-icon {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    margin: 0;
+}
+
+.navbar-logo a {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.navbar-logo-blue {
+    color: #007bff;
+}
+
+.navbar-logo-white {
+    color: #FAFAFA;
+    font-style: italic;
+}
+
+.navbar-dark .nav-item .nav-link {
+    text-transform: uppercase;
+    color: #fafafa;
+    font-weight: 400;
+    font-size: 1em;
+    margin-right: 5px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.navbar-dark .nav-item .nav-link:hover {
+    transition-property: color;
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.terms-privacy-navbar-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.navbar-social-link .social-link i {
+    color: #FAFAFA;
+    font-size: 2em;
+    margin: 10px 10px 10px 0;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.navbar-social-link .social-link i:hover {
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.terms-privacy-navbar a:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms-privacy-link {
+    color: #FAFAFA;
+}
+
+.terms-privacy-navbar-divider {
+    color: #FAFAFA;
+}
+
+/*---------- End of social icons at the side of the page in desktop views ----------*/
+
+
+
+
+
+
+
+/*----------Social links at the left hand side of the pages----------*/
+.icon-bar-desktop-views {
+    z-index: 1;
+    top: 40%;
+    position: fixed;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.icon-bar-desktop-views a {
+    display: none;
+    text-align: center;
+    transition-timing-function: ease-in-out;
+    padding: 10px 12px;
+    transition-duration: 0.1s;
+    color: #FFFFFF;
+    font-size: 25px;
+}
+
+.icon-bar-facebook {
+    background-color: #3B5998;
+    color: #FFFFFF;
+    width: 55px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+}
+
+.icon-bar-facebook:hover {
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    width: 65px;
+}
+
+.icon-bar-twitter {
+    background-color: #55ACEE;
+    color: #FFFFFF;
+    width: 55px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+}
+
+.icon-bar-twitter:hover {
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    width: 65px;
+}
+
+.icon-bar-linkedin {
+    background-color: #007bb5;
+    color: #FFFFFF;
+    width: 55px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+}
+
+.icon-bar-linkedin:hover {
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    width: 65px;
+}
+
+.icon-bar-facebook:hover,
+.icon-bar-twitter:hover,
+.icon-bar-linkedin:hover {
+    padding-left: 20px;
+}
+/*----------End of Social link bar----------*/
+
+
+
+
+
+/*----------Content in the pages from base.html----------*/
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #ced4da;
+}
+
+.container,
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    margin-top: 70px;
+}
+/*----------End of content in the pages from base.html----------*/
+
+
+
+
+
+/*---------- Login and registration forms ----------*/
+.form-section {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    margin: 20px 0 150px 0;
+    padding: 20px 20px;
+}
+
+/*Logout message page - also used for the message received template on the contact form*/
+.logout-message-section {
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+.short-message {
+    min-height: 90vh;
+    margin-top: 40px;
+}
+
+.short-message-header {
+    font-size: 2em;
+}
+
+.short-message-paragraph {
+    font-size: 1em;
+}
+/*---------- End of login and registration form content ----------*/
+
+
+
+
+
+/*----------Account form----------*/
+.account-image {
+    height: 80px;
+    width: 80px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+  
+  .account-heading {
+    font-size: 2.5em;
+    color: #007bff;
+}
+/*----------End of Account form----------*/
+
+
+
+
+
+/*----------Home page----------*/
+.index-container {
+    background-color: #ced4da;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-header-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+}
+
+.slider {
+    margin-top: 70px;
+    width: 100%;
+}
+
+.slide {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
+
+#architect {
+    background-image: url('../images/architect.jpg');
+}
+
+#plan {
+    background-image: url('../images/plan.jpg');
+}
+
+#interior {
+    background-image: url('../images/interior.png');
+}
+
+#extension {
+    background-image: url('../images/extension.jpg');
+}
+
+.slide-content {
+    min-height: 93vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.slide-content-text {
+    width: 85%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+.slide-content-title {
+    color: #007bff;
+    font-size: 3rem;
+    font-weight: 400;
+    text-shadow: 5px 5px 10px #000000;
+    margin-bottom: 20px;
+}
+
+.slide-content-paragraph {
+    color: #FAFAFA;
+    font-size: 1.4em;
+    line-height: 1.4em;
+    font-weight: 600;
+    text-shadow: 5px 5px 10px #000000;
+    margin-bottom: 15px;
+}
+
+.home-page-image-buttons {
+    width: 85%;
+    max-width: 300px;
+    height: 60px;
+    margin: 25px 0 0 0;
+}
+
+.home-page-image-buttons:hover {
+    cursor: pointer;
+}
+
+.home-page-image-buttons a {
+    color: #FAFAFA;
+    font-size: 1.6em;
+    padding: 20px 0;
+    font-weight: 600;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.home-page-image-buttons a:hover {
+    text-decoration: none;
+}
+
+/*Arrows*/
+.arrows {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+}
+
+.arrow {
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    color: #FAFAFA;
+}
+
+.arrow-left {
+    border-width: 20px 27px 20px 0;
+    border-color: transparent #FAFAFA transparent transparent;
+    left: 0;
+}
+
+.arrow-right {
+    border-width: 20px 0 20px 27px;
+    border-color: transparent #FAFAFA transparent;
+    left: 0;
+}
+
+/*Home page overall content*/
+.index-header-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.index-content-container {
+    width: 90%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Home page blog section */
+.index-blog-aside {
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 20px 20px 20px;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+}
+
+.recent-post-heading {
+    margin-bottom: 20px;
+    color: #007bff;
+    font-size: 1.6em;
+}
+
+.end-home-page-blog-text {
+    margin-top: 20px;
+    padding: 20px 0 0 0;
+    border-top: 0.5px solid #ced4da;
+}
+
+.end-home-page-blog-text-heading {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Home page jobs section */
+.home-page-job-section {
+    width: 100%;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.home-page-job-section-container {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px 20px 20px 20px;
+}
+
+.home-page-job-card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.job-article-home-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: none;
+    margin-bottom: 20px;
+    border: 0.5px solid #ced4da;
+}
+
+.job-article-home-page img {
+    width: 100%;
+    height: auto;
+}
+
+.job-author-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home-page-section-heading {
+    color: #007bff;
+    font-size: 2.5rem;
+    margin: 30px 0;
+}
+
+.job-home-title {
+    margin-bottom: 10px;
+}
+
+.home-page-job-button {
+    max-width: 100px;
+}
+
+/*Home page shop*/
+.home-page-shop-section {
+    width: 100%;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+}
+
+.home-page-shop-container {
+    border-top: 0.5px solid #ced4da;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-page-shop-text {
+    padding: 20px 0;
+}
+
+.home-page-shop-text-header {
+    color: #007bff;
+}
+/*----------End of Home page styles ----------*/
+
+
+
+
+/*----------About Page----------*/
+.about-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-slide {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/architect.jpg');
+}
+
+/*Overview of site sections*/
+.about-intro-container {
+    background-color: #007bff;
+    min-height: 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about-intro {
+    width: 80%;
+    max-width: 1100px;
+    padding: 20px 0;
+}
+
+.about-intro-section {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.about-intro-jobs i,
+.about-intro-shop i,
+.about-intro-blog i {
+    color: #FAFAFA;
+    font-size: 5em;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 10px #000000;
+}
+
+.about-intro-heading {
+    color: #FAFAFA;
+    text-shadow: 2px 2px 10px #000000;
+}
+
+.about-intro-paragraph {
+    color: #FAFAFA;
+    text-shadow: 2px 2px 10px #000000;
+}
+
+.about-overview-container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-overview {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px 0;
+}
+
+.about-registration-heading {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.about-registration {
+    background-color: #ffffff;
+    padding: 20px;
+}
+/*----------End of the About Page styles----------*/
+
+
+
+
+/*----------Terms and conditions and privacy policy page----------*/
+.terms-privacy-container {
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.terms-content {
+    width: 100%;
+}
+
+.terms-header {
+    color: #007bff;
+    font-size: 2em;
+    margin: 30px 0;
+}
+
+.terms-section-header {
+    color: #007bff;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.terms-paragraph {
+    margin-bottom: 10px;
+}
+
+.terms-content,
+.privacy-content {
+    margin-bottom: 50px;
+    width: 98%;
+    max-width: 1100px;
+}
+/*----------End of terms and conditions and privacy policy page----------*/
+
+
+
+
+
+/*----------Contact Form----------*/
+.contact-form-title {
+    margin-bottom: 0.5rem;
+}
+
+.contact-label {
+    margin-top: 20px;
+}
+
+.email-contact,
+.message-contact {
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.message-contact {
+    height: 10rem;
+    margin-bottom: 30px;
+}
+
+.border-top {
+    border-top: 1px solid #dee2e6;
+}
+/*----------End of contact form styles----------*/
+
+
+
+
+
+/*----------Profile Page----------*/
+.user-blog-header {
+    background-color: #ffffff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 20px 0 0 0;
+}
+
+.profile-job-blog {
+    width: 100%;
+}
+
+.profile-page-container {
+    margin-top: 70px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 1100px;
+}
+
+.profile-page-box {
+    background-color: #ffffff;
+    margin: 20px 0;
+    padding: 20px;
+    max-width: 100%;
+}
+
+.profile-top-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.account-heading {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.account-email {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.profile-page-button {
+    margin-top: 20px;
+}
+
+.profile-blog-intro {
+    margin: 10px 0;
+}
+
+.blog-cards-profile {
+    margin-bottom: 40px;
+}
+
+.job-cards-profile {
+    margin-bottom: 40px;
+}
+
+.profile-job-article {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border: 0.5px solid #ced4da;
+    margin: 20px 0;
+}
+.profile-job-article img {
+    height: 100%;
+    width: 100%;
+}
+
+.profile-job-blog-text {
+    padding: 10px;
+}
+/*----------End of profile page styles----------*/
+
+
+
+
+
+/*----------Blog Pages and Job Pages----------*/
+/*Blog and Job home page and blog user page*/
+.job-blog-container {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.user-blogs-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-home-container,
+.jobs-home-container,
+.cart-home-container {
+    width: 90%;
+    max-width: 1100px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-card-container,
+.job-card-container,
+.cart-card-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.blog-card-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-article,
+.job-article {
+    background-color: #ffffff;
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blog-article img,
+.job-article img {
+    width: 100%;
+    height: auto;
+}
+
+.blog-intro {
+    padding: 10px;
+}
+
+.job-intro {
+    padding: 10px;
+}
+
+.blog-home-title {
+    font-size: 1.8em;
+    margin: 10px 0;
+    font-weight: 400;
+    color: #007bff;
+}
+
+.paginate-buttons {
+    margin: 20px 0 40px 20px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.new-job-post-button {
+    width: 100%;
+    margin: 20px 0 40px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*User post specific*/
+.user-blog-header {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.user-post-title {
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+/*Blog details page*/
+.blog-detail-container,
+.job-detail-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-article-content {
+    width: 90%;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.article-title,
+.job-page-title {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+.article-content {
+    margin-top: 20px;
+}
+
+.blog-image {
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+}
+
+.main-blog-content {
+    margin: 30px 0;
+}
+
+.post-date {
+    margin-bottom: 15px;
+}
+
+.article-intro {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.blog-link {
+    color: #FAFAFA;
+    max-width: 150px;
+}
+
+/*Other blogs listed at the bottom of the blogs detail page*/
+.blog-aside-intro-text {
+    border-bottom: 0.5px solid #ced4da;
+} 
+
+.blog-aside-intro-text-heading {
+    color: #007bff;
+    font-size: 2.5rem;
+    margin: 20px 0 30px 0;
+}
+
+.blog-details-post-text {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.blog-details-other {
+    max-height: 90px;
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    border: 0.5px solid #ced4da;
+}
+
+.blog-details-other img {
+    width: 30%;
+    height: auto;
+}
+
+.blog-details-other-title {
+    font-size: 1.1em;
+}
+
+.blog-aside {
+    width: 90%;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+}
+
+.blog-details-post-author {
+    font-size: 0.7em;
+}
+/*----------End of blogs styles----------*/
+
+
+
+
+/*----------Job pages specific styles----------*/
+.job-location {
+    font-size: 0.5em;
+}
+
+.job-home-title {
+    color: #007bff;
+    font-size: 2em;
+}
+
+.article-card-intro {
+    margin: 5px 0;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.article-card-intro-top {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.article-card-intro-top img {
+    width: 100%;
+}
+
+.article-card-intro-description {
+    padding: 0 10px;
+    margin: 5px 0 15px 0;
+}
+
+.article-card-intro-paragraph {
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.article-card-intro-author {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.article-card-intro-date {
+    font-size: 0.9em;
+}
+
+.article-card-intro-paragraph {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/*Jobs details page*/
+.job-owner-info-aside {
+    width: 90%;
+    max-width: 500px;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px ;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+}
+
+/*Aside section for the job creators profile*/
+.job-owner-info-aside {
+    max-width: 500px;
+}
+
+/*Job upload files aside*/
+.job-upload-files-aside {
+    margin: 10px 0 50px 0;
+    padding: 10px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.job-file-upload-aside-header {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.job-file-upload-aside-paragraph {
+    font-size: 0.8em;
+}
+
+.job-upload-text-paragraph {
+    font-size: 0.8em;
+}
+
+.upload-table {
+    margin: 20px 0;
+}
+
+.upload-table-row {
+    height: 50px;
+}
+
+.job-uploaded-file-table-head {
+    border-bottom: 0.5px solid #ced4da;
+}
+
+.job-uploaded-file-table-header {
+    font-size: 0.9em;
+    padding-bottom: 20px;
+}
+
+.job-uploaded-file-table {
+    width: 100%;
+}
+
+.upload-table-head-row {
+    margin-bottom: 20px;
+    border-bottom: 0.8px solid #ced4da;
+}
+
+.upload-table-head {
+    font-size: 0.9em;
+}
+
+.upload-table-header {
+    margin-bottom: 20px;
+}
+
+.upload-table-row-value {
+    font-size: 0.8em;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid #ced4da;
+
+}
+
+.upload-table-row-value-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-upload-button {
+    margin: 20px 0 0 0;
+}
+
+.file-pay-button {
+    font-size: 0.8em;
+    width: 100%;
+}
+
+.job-owner-info-overview {
+    margin: 10px 0;
+}
+/*---------- End of Job pages styles----------*/
+
+
+
+
+
+/*----------Comments section to be used in blog and job pages ----------*/
+.job-blog-comments {
+    max-width: 750px;
+    padding: 20px;
+}
+
+.comments-header {
+    color: #007bff;
+    margin-bottom: 50px;
+}
+
+.comments {
+    margin: 40px 0;
+}
+
+.single-comment {
+    padding: 30px 10px;
+    border-top: 0.5px solid #ced4da;
+}
+
+.comment-author-date {
+    font-size: 0.7em;
+    margin-bottom: 6px;
+}
+
+.comment-author {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.comment {
+    margin-bottom: 0;
+}
+/*----------End of comments section ----------*/
+
+
+
+
+/*----------Delete a blog or a job post pages----------*/
+.delete-content-section {
+    min-height: 90vh;
+    margin-top: 40px;
+}
+
+.delete-form {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.delete-post-job-header {
+    font-size: 2em;
+}
+/*----------End of the styles for the delete a post or job pages----------*/
+
+
+
+
+
+/*----------Shop pages styles. This is also used in the checkout page----------*/
+.shop-home-container {
+    margin-top: 70px;
+    width: 90%;
+    max-width: 1100px;
+    margin-bottom: 50px;
+    min-height: 90vh;
+}
+
+.shop-page-header {
+    background-color: #ffffff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 20px 0;
+}
+
+.shop-page-title {
+    color: #007bff;
+    margin: 10px 0;
+    font-size: 2em;
+}
+
+.products-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.product {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.product-header {
+    color: #007bff;
+    font-size: 2em;
+    margin-top: 10px;
+}
+
+.product-price {
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.product-currency {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.product-input {
+    margin-right: 10px;
+}
+
+/*Cart page styles*/
+.cart-total-row {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px 0 40px 0 ;
+}
+
+.cart-total-row-paragraph {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.currency-total {
+    font-size: 1.4em;
+    color: #007bff;
+}
+
+/*Checkout form page styles*/
+.payment-form-section {
+    background-color: #ffffff;
+    width: 100%;
+    margin: 20px 0 50px 0;
+    padding: 20px 20px;
+}
+
+.payment-form-legend {
+    color: #007bff;
+    font-size: 1.6em;
+}
+
+#o-form,
+#p-form {
+    border-bottom: 0.5px solid #ced4da;
+    padding-bottom: 10px;
+}
+/*----------End of shop pages styles----------*/
+
+
+
+
+
+/*---------- Footer ----------*/
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-top {
+    width: 100%;
+    background-color: #343a40;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container {
+    width: 90%;
+    max-width: 1100px;
+}
+
+.footer-top-container {
+    margin-top: 2.5em;
+}
+
+.footer-bottom-container {
+    margin-top: 1em;
+}
+
+.footer-section {
+    margin-bottom: 3em;
+}
+
+.footer-header {
+    color: #FAFAFA;
+    font-size: 2em;
+    margin-bottom: .6em;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.footer-paragraph {
+    color: #FAFAFA;
+    font-size: 1em;
+    line-height: 1.7em;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.footer-paragraph a {
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-link {
+    font-size: 1.2em;
+    line-height: 1em;
+}
+
+.footer-paragraph a:hover {
+    transition-property: color;
+    color: #FAFAFA;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    text-decoration: none;
+}
+
+.footer-paragraph span {
+    text-decoration: underline;
+}
+
+.footer-paragraph span a {
+    color: #FAFAFA;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-paragraph span a:hover {
+    transition-property: color;
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+#footer-paragraph-phone,
+#footer-paragraph-email {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #007bff;
+}
+
+/*Social links at the top of the footer*/
+.footer-social {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 50px;
+    margin: 30px 0;
+}
+
+.social-links {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.social {
+    margin: 0 10px;
+}
+
+.social-links li a {
+    text-decoration: none;
+}
+
+.social-links li a i {
+    font-size: 2.7em;
+    display: flex;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    color: #007bff;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.social-links li a i:hover {
+    transition-property: color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    color: #FAFAFA;
+}
+
+/* Footer copyright and terms and privacy links at the bottom*/
+.footer-statement {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statement,
+.footer-contact-about-links-span {
+    font-size: 0.8em;
+}
+
+.statement {
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact-about-links-span a {
+    color: #343a40;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-contact-about-links-span a:hover {
+    text-decoration: none;
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+/*---------- End of Footer ----------*/
+
+
+
+
+
+
+
+/*---------- Larger screen sizes ----------*/
+/* Horizontal mobile screens */
+@media(min-width: 500px) {
+
+    .article-card-intro-top {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .article-card-intro-top img {
+        width: 40%;
+        padding: 10px 0;
+    }
+
+    /*----------Profile page----------*/
+    .profile-page-box {
+        padding: 20px;
+    }
+
+    .profile-blog-article {
+        flex-direction: row;
+    }
+    
+    .profile-blog-article img {
+        width: 35%;
+    }
+    /*----------End of Profile page styles----------*/
+
+    /*----------Blog page----------*/
+    .blog-article {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .blog-article img {
+        width: 35%;
+    }
+    /*----------End of Blog page styles----------*/
+
+    /*----------Shop styles----------*/
+    .product {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .product-image {
+        width: 35%;
+    }
+
+    .product-text {
+        width: 60%;
+    }
+
+    /*Checkout form page styles*/
+    #form-section-payment {
+        width: 100%;
+    }
+
+    .payment-form-groups {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #o-form,
+    #p-form {
+        border-bottom: 0;
+        width: 100%;
+    }
+
+    #o-form {
+        border-right: 0.5px solid #ced4da;
+        padding-right: 20px;
+    }
+
+    #p-form {
+        padding-left: 20px;
+    }
+    /*----------End of shop views----------*/
+}
+    
+
+
+
+
+/*tablet screens*/
+@media(min-width: 768px) {
+
+    /*----------Home page----------*/
+    .slide-content {
+        min-height: 70vh;
+    }
+
+    /*Home page jobs section*/
+    .job-card-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px 0;
+    }
+
+    .job-article-home-page {
+        display: flex;
+        width: 48%;
+    }
+
+    /*Blog section on home page*/
+
+    .blog-card-container-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .blog-details-other {
+        width: 48%;
+    }
+
+    /*Home page shop section*/
+    .home-page-shop-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .home-page-shop-section img {
+        width: 68%;
+        padding: 10px;
+    }
+
+    .home-page-shop-container {
+        border-top: none;
+        justify-content: flex-start;
+        padding: 10px;
+        width: 31%;
+    }
+    /*----------End of home page styles----------*/
+    
+    /*----------About page----------*/
+    .about-intro {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        max-width: 1100px;
+        padding: 20px 0;
+    }
+
+    .about-intro-section {
+        width: 28%;
+    }
+    /*----------End of About page styles----------*/
+
+    /*----------Profile page----------*/
+    .user-blog-header {
+        margin-bottom: 20px;
+    }
+
+    .profile-job-blog {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .profile-blog-column {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+    }
+
+    .profile-job-column {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+    }
+
+    .profile-blog-article {
+        flex-direction: column;
+    }
+
+    .profile-blog-article img {
+        width: 100%;
+    }
+
+    /*Update Profile*/
+    .form-section {
+        margin-top: 100px;
+    }
+    /*----------End of Profile page styles----------*/
+
+    /*----------Blog pages----------*/
+    .blog-article,
+    .job-upload {
+        width: 47%;
+    }
+
+    .blog-article {
+        flex-direction: column;
+    }
+
+    .article-title,
+    .job-page-title {
+        font-size: 2.5em;
+    }
+
+    .blog-article img {
+        width: 100%;
+    }
+
+    .job-article {
+        width: 48%;
+    }
+
+    /* Other blog links in the aside of the posts detail page */
+    .blog-aside {
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 10px;
+        margin-bottom: 50px;
+        box-sizing: border-box;
+    }
+
+    
+    .article-card-intro-top {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .article-card-intro-top img {
+        width: 100%;
+    }
+    /*----------End of blog page styles----------*/
+    
+    /*----------Shop styles----------*/
+    .product {
+        flex-direction: column;
+        width: 48%;
+    }
+
+    .product-image {
+        width: 100%;
+    }
+
+    .product-text {
+        width: 100%;
+    }
+    /*----------End of shop views----------*/
+
+    /*---------- Footer sections ----------*/
+    .footer-top-areas {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .footer-section {
+        width: 30%;
+    }
+    
+    #footer-about-section {
+        width: 20%;
+    }
+    /*---------- End of Footer sections ----------*/
+    
+}
+
+
+
+
+
+/*Large tablet and small laptop screens*/
+@media(min-width: 992px) {
+    /*----------Navbar----------*/
+    .navbar {
+        padding: 0;
+    }
+    
+    .navbar-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .terms-privacy-navbar {
+        display: none;
+    }
+    
+    .nav-buttons {
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .navbar-social-link {
+        display: none;
+    }
+    
+    .navbar-collapse {
+        justify-content: flex-end;
+    }
+    
+    /*----------Social link bar display----------*/
+    .icon-bar-desktop-views a {
+        display: block;
+    }
+    /*End of social link bar display*/
+    /*----------End of Navbar in laptop and desktop views-----------*/
+
+    /* Home page jobs section */
+    .blog-jobs-large-screen-display {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .blog-aside-intro-text {
+        margin: 20px 0;
+    }
+
+    .home-page-job-section {
+        width: 66%;
+    }
+
+    .index-blog-aside {
+        width: 31%;
+    }
+
+    .blog-card-container-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .blog-card-container-cards {
+        flex-direction: column;
+    }
+
+    .blog-details-other {
+        width: 100%;
+    }
+    /*End of home page section*/
+
+    /*----------Blog pages----------*/
+    .blog-article,
+    .job-article {
+        width: 31%;
+    }
+
+    /* Blog details page */
+    .blog-detail-container,
+    .job-detail-container { 
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 1100px;
+        align-items: flex-start;
+    }
+
+    .blog-article-content {
+        width: 67%;
+        margin-bottom: 50px;
+    }
+
+    .blog-aside {
+        width: 29%;
+        margin-bottom: 50px;
+        margin-top: 130px;
+    }
+
+    .blog-aside-intro-text-heading {
+        font-size: 1.8em;
+    }
+    /*----------End of blog pages----------*/
+
+    /*----------Job details page----------*/
+    .job-owner-info-aside,
+    .job-upload-files-aside {
+        width: 29%;
+        margin-bottom: 50px;
+        margin-top: 130px;
+    }
+    /*----------End of Job details page styles----------*/
+
+    /*----------Shop styles----------*/
+    .product {
+        width: 31%;
+    }
+    /*----------End of shop views----------*/
+    
+}

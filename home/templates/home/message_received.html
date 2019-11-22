@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Container for the message content-->
+<div class="container">
+    <!--Short message to tell the user their message has been received-->
+    <div class="short-message">
+        <div class="logout-message-section">
+            <h1 class="short-message-header">Thanks for your message</h1>
+            <p class="short-message-paragraph">We will be in touch as soon as possible. Return to <a href="{% url 'home' %}">home</a> page.</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

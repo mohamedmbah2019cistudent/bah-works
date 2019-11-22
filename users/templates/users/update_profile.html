@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!--Container for the page content-->
+<div class="container">
+
+    <!--Form section to present the form-->
+    <div class="form-section">
+
+        <!--Form that enables the user to add information about themselves, add an image etc-->
+      	<form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Update Profile</legend>
+                <!--u_form and p_form logic handles in the 'views.py' file-->
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">Update Profile</button>
+            </div>      
+        </form>
+    </div>
+</div>
+{% endblock content %}

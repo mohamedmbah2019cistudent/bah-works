@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!--Container for the page content-->
+    <div class="profile-page-container">
+        
+        <!--Header section of the page-->
+        <div class="user-blog-header">
+            <h1 class="user-post-title">Profile Page for {{ user.profile.firstname }} {{ user.profile.lastname }}.</h1>
+        </div>
+
+        <!--If statement to check for messages-->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-primary">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="profile-job-blog">
+            <div class="profile-blog-column">
+
+                <!--Profile pverview section-->
+                <section class="profile-page-box" id="profile-profile-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-top-section">
+                            <img class="account-image" src="{{ user.profile.image.url }}">
+                            <div class="profile-details">
+                                <h2 class="account-heading">{{ user.username }}</h2>
+                                <p class="account-email">{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <div class="user-profile-overview">
+                            <p class="account-paragraph">{{ user.profile.profile_intro|linebreaksbr }}</p>
+                        </div>
+                        <!--Button to link to a page where the user can update their profile-->
+                        <a class="btn btn-primary profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
+                    </div>
+                </section>
+
+                <!--Display the users most recent blogs if there are any-->
+                <section class="profile-page-box" id="profile-blog-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Your Blogs</h2>
+                            <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
+                        </div>
+                        <div class="blog-card-container-cards blog-cards-profile">
+							<!--For loop to use the following code of reach of the blogs in the list-->
+							{% for post in posts %}
+                                {% if post.author == user %}
+                                <article class="blog-details-other">
+                                    <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                    <div class="blog-intro">
+                                        <div class="blog-details-post-text">
+                                            <small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                    </div>
+                                </article>
+                                {% endif %}
+                            {% endfor %}  
+						</div>
+                        <!--Create blog page accessed if the following button is clicked-->
+                        <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>    
+                    </div>
+                </section>
+            </div>
+
+            <div class="profile-job-column">
+                <!--Job section-->
+                <section class="profile-page-box" id="profile-job-upload-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Jobs you have Uploaded</h2>
+                            <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids from other users.</p>
+                        </div>
+                        <div class="job-card-container-cards job-cards-profile">
+                            <!--For loop to use following code for any jobs the user has uploaded-->
+                            {% for job in jobs %}
+                                {% if job.author == user %}
+                                    <article class="profile-job-article">
+                                        <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+                                        <div class="profile-job-blog-text">
+                                            <div class="article-metadata">
+                                                <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                            </div>
+                                            <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                            <p class="article-card-intro">{{ job.job_overview }}</p>
+                                        </div>
+                                    </article>
+                                {% endif %}
+                            {% endfor %}                          
+                        </div>
+                        <a class="btn btn-primary" href="{% url 'job-create' %}">Create New Job</a>
+                    </div>
+                </section>
+
+            </div> 
+        </div>    
+    </div>
+{% endblock content %}

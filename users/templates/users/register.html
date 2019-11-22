@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!--Container for the page content-->
+<div class="container">
+
+	<!--Form section to present the form-->
+	<div class="form-section">
+
+		<!--Form to allow the user to register an account-->
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-10">Register</legend>
+				<!--Crispy forms used for presentation and handle logic based on-->
+				{{ form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit">Register to CADWork</button>
+			</div>			
+		</form>
+		<div class="border-top pt-3">
+			<small class="text-muted">If you already have an account, you can <a href="{% url 'login' %}">log in</a> here. By registering to CADWork you accept our <a href="{% url 'terms' %}">terms</a> and <a href="{% url 'privacy' %}">privacy policy</a>.</small>
+		</div>
+	</div>
+</div>
+{% endblock content %}

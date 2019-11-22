@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!--Content container-->
+<div class="container">
+	<div class="form-section">
+
+		<!--Form for a job to be be created-->
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Create a new Job</legend>
+				<!--Crispy form to give the form a professional appearance-->
+				{{ form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit">Submit</button>
+			</div>			
+		</form>
+	</div>
+</div>
+{% endblock content %}

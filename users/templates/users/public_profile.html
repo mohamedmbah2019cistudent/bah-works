@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="profile-page-container">
+
+        <div class="user-blog-header">
+            <h1 class="user-post-title">This is the profile for {{ profile.firstname }} {{ profile.lastname }} ({{ profile.user.username }})</h1>
+        </div>
+
+        <div class="profile-job-blog">
+            <div class="profile-blog-column">
+                <section class="profile-page-box" id="profile-profile-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-top-section">
+                            <img class="account-image" src="{{ profile.image.url }}">
+                        </div>
+                        <div class="user-profile-overview">
+                            <p class="account-paragraph">{{ profile.profile_intro|linebreaksbr }}</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="profile-blog-column">
+                <section class="profile-page-box" id="profile-blog-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Blogs by {{ profile.user.username }}</h2>
+                            <p class="account-paragraph">These are the three most recently uploaded blogs by {{ profile.user.username }}.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card-container-cards blog-cards-profile">
+						<!--For loop to use the following code of reach of the blogs in the list-->				
+                        {% for post in posts %}    
+                            {% if post.author == profile.user %}                     
+                            <article class="blog-details-other">
+                                <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                <div class="blog-intro">
+                                    <div class="blog-details-post-text">
+                                        <small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                    </div>
+                                    <h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                </div>
+                            </article>
+                            {% endif %} 
+                        {% endfor %}                             
+					</div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

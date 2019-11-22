@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!--Container for the page content-->
+<div class="container">
+
+	<!--Form section to present the form-->
+	<div class="form-section">
+
+		<!--If statement to check for messages-->
+		{% if messages %}
+			{% for message in messages %}
+				<p class="alert alert-primary">
+					{{ message }}
+				</p>
+			{% endfor %}
+		{% endif %}
+
+		<!--Form for user login-->
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Log In</legend>
+				<!--Crispy forms used for presentation-->
+				{{ form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit">Log In</button>
+				<small class="text-muted pt-2"><a href="{% url 'password_reset' %}">Forgot Password?</a></small>
+			</div>			
+		</form>
+
+		<!--If the user does not have an account the following link will allow them to register an account first-->
+		<div class="border-top pt-3">
+			<small class="text-muted">If you do not yet have an account, you can <a href="{% url 'register' %}">register</a> to CADWork here.</small>
+		</div>
+	</div>
+</div>
+{% endblock content %}

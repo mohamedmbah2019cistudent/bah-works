@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!--Shop content container-->
+<div class="shop-home-container">
+
+    <!--Heading section of the page, includes the running total number of products-->
+    <div class="shop-page-header">
+        <h1 class="shop-page-title">Your Shopping Cart</h1>
+        <p class="payment-form-total">Total <span class="payment-form-total-price">£{{ total }}</span></p>
+    </div>
+
+    <!--Section that contains the payment form-->
+	<div class="payment-form-section">
+        <!--If statement to check for messages-->
+        {% if messages %}
+            {% for message in messages %}
+                <div id="credit-card-errors">
+                    <div class="alert-message block-message-error" id="stripe-error-message">
+                        <p class="alert alert-primary">{{ message }}</p>
+                    </div>
+                </div>   
+            {% endfor %}
+        {% endif %}
+        <!--Form where the user can pay for the products-->
+        <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+        {% csrf_token %}
+            <div class="payment-form-groups">
+                <!--Form sections divided into two sections-->
+                <!--Personal details. Form set up in the home function of 'views.py'-->
+                <fieldset class="form-group" id="o-form">
+                    <legend class="payment-form-legend">Personal Details</legend>
+                    {{ order_form|crispy }}
+                </fieldset>
+                <!--Payment details. Form set up in the home function of 'views.py'-->
+                <fieldset class="form-group" id="p-form">
+                    <legend class="payment-form-legend">Payment Details</legend>
+                    {{ payment_form|crispy }}
+                </fieldset>   
+            </div>
+            <input class="btn btn-primary" id="submit_payment_btn " name="commit" type="submit" value="Submit Payment Details">
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+<!--Javascript files to appear in head of the checkout page-->
+{% block head_js %}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+            Stripe.publishableKey = '{{ publishable }}';
+        //]]>
+    </script>
+    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock head_js %}

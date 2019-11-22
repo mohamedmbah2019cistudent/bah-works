@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--The following div is used to keep the full width of the page white in larger screen sizes-->
+<div class="job-blog-container">
+
+	<!--Container for the content-->
+	<div class="job-detail-container">
+
+		<!--Job article content-->
+		<article class="blog-article-content">
+			<!--If statement to check for messages-->
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-primary">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+			<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}, {{ object.job_location_county }}</span></h2>
+			<p class="ml-1">This job was created on {{ object.date_posted|date:"dS F, Y" }}</p>
+			<p class="article-intro">{{ object.job_overview }}</p>
+			<div class="article-metadata">
+				<!--Check the user is authenticated-->
+				{% if user.is_authenticated %}
+					<!--If user is authenticated check whether the author is creator of the job-->
+					{% if object.author == user %}
+						<div class="mt-3 mb-3">
+							<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'job-update' object.id %}">Update</a>
+							<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'job-delete' object.id %}">Delete</a>
+						</div>
+					<!--If user is authenticated but not the creator of the job-->
+					{% else %}
+						<div class="mt-3 mb-3">
+							<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-upload-file' object.id %}">Upload a file</a>
+						</div>
+					{% endif %}
+				<!--If the user is not authenticated the following will be displayed-->
+				{% else %}
+					<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-upload-file' object.id %}">Upload a File</a>
+					</div>
+				{% endif %}
+			</div>
+			<!--Large image that the user placed in the blog. If the user didn't select an image, the job-default.jpg will be displayed-->
+			<img class="blog-image" src="{{ job.image.url }}">
+			<div class="main-blog-content">
+				<!--'linebreaksbr' will divide the plain text inputted by the user into separate files in the content on this page-->
+				<p class="job-overview-paragraph">{{ object.job_description|linebreaksbr }}</p>
+			</div>
+					
+			<!--Comments section for the jobs-->
+			<section class="job-blog-comments">
+				<h3 class="comments-header">Comment or ask questions about project</h3>	
+				<div class="leave-comment-button">
+					<a class="btn btn-primary" href="{% url 'job-comment-create' object.id %}">Leave a comment</a>
+				</div>
+				<div class="comments">
+					{% for comment in job.comments.all %}  
+						<div class="single-comment">                    
+							<p class="comment-author-date"><span class="comment-author">{{ comment.author }}</span> - {{ comment.comment_date|date:"dS F, Y" }}</p>
+							<p class="comment">{{ comment.comment|linebreaksbr }}</p>
+													
+							{% if user.is_authenticated and comment.author == user or user.is_superuser %}
+							<div class="btn-group">
+								<div class="mt-3 mb-3">
+									<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'job-comment-update' comment.id %}">Update</a>
+									<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'job-comment-delete' comment.id %}">Delete</a>
+								</div>
+							</div>
+							{% endif %}
+						</div>
+										
+					{% empty %}                           
+						<p class="alert alert-primary">There have so far been no comments left on this job</p>         
+					{% endfor %}
+				</div>
+			</section>
+		</article>
+
+		<!--Check whether the user is authenticated-->
+		{% if user.is_authenticated or user.is_superuser %}
+			{% if object.author == user %}
+				<aside class="job-upload-files-aside">
+					<h3 class="job-file-upload-aside-header">Uploaded Files</h3>
+					<p class="job-file-upload-aside-paragraph">The following files have been uploaded by users. Click on the price to purchase this file.</p>
+					<table class="job-uploaded-file-table">
+						<thead class="job-uploaded-file-table-head">
+							<tr class="job-uploaded-file-table-row">
+								<th class="job-uploaded-file-table-header">File Name</th>
+								<th class="job-uploaded-file-table-header">Uploaded By</th>
+								<th class="job-uploaded-file-table-header">Price</th>
+								<th class="job-uploaded-file-table-header">File</p>
+							</tr>
+						</thead>
+						<tbody class="job-uploaded-file-table-body">
+							{% for uploaded_file in job.uploaded_files.all %}
+							<tr class="upload-table-row">
+								<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
+								<td class="upload-table-row-value"><a href="{% url 'public_profile' uploaded_file.author.profile.id %}">{{ uploaded_file.author }}</a></td>
+								<td class="upload-table-row-value">
+									<a class="btn btn-sm btn-primary file-pay-button" href="{{ uploaded_file.uploaded_file.url }}" target="_blank">Download</a>
+								</td>
+							</tr>
+							{% empty %}
+							<p class="alert alert-primary">There are currently no files to download.</p>
+							{% endfor %}
+						</tbody>
+					</table>
+				</aside>
+
+			<!--If user is authenticated check whether the user created the current bid-->
+			{% elif object.author != user %}
+			
+				<!--The aside in a jobs detail page will have an overall description about the user who posted it with a link to the public profile page-->
+				<aside class="job-owner-info-aside">
+					<div class="profile-aside">
+						<div class="profile-top-section">
+							<img class="account-image" src="{{ job.author.profile.image.url }}">
+							<div class="profile-details">
+								<h2 class="account-heading">{{ job.author.username }}</h2>
+							</div>
+						</div>
+						<div class="job-owner-info-overview">
+							<p class="account-email">{{ job.author.profile.profile_intro|linebreaksbr }}</p>
+							<a href="{% url 'public_profile' job.author.profile.id %}" class="btn btn-primary btn-sm">See users full profile</a>
+						</div>
+					</div>
+				</aside>
+
+			{% endif %}
+
+		{% endif %}
+
+	</div>
+
+</div>
+{% endblock content %}

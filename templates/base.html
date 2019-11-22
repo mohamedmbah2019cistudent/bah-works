@@ -1,0 +1,184 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+	<!--Meta descriptions-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Upload job and find a Bah Professional for your project">
+    
+    <!--Website title and description-->
+    <title>BahWorks</title>
+
+    <!--Links to font awesome used for social icons and the css file and the bootstrap framework-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+
+<!--This html page will have the navbar and footer that will be used on every one of the pages-->
+<body>
+	
+	<!--Navbar - general styling uses bootstrap-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="navbar-container">
+			<div class="navbar-logo-dropdown-icon">
+			    <h2 class="navbar-logo"><a class="navbar-brand" href="{% url 'home' %}"><span class="navbar-logo-blue">Bah</span><span class="navbar-logo-white">Works</span></a></h2>
+			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+			    </button>
+		    </div>
+			<!--Navbar items to add-->
+		    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		        <ul class="navbar-nav ml-1">
+		        	<li class="nav-item">
+		                <a class="nav-link" href="{% url 'jobs-home' %}">Jobs</a>
+		      		</li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="{% url 'blog-home' %}">Blog</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="{% url 'about' %}">About</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="{% url 'shop-home' %}">Shop</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link mr-2" href="{% url 'cart-home' %}"><i class="fa fa-shopping-cart"></i></a>
+		            </li>
+					<!--If statement to check whether there are any products in the shop cart. If there are more than 0 products, then that number will be displayed-->
+					{% if product_count > 0 %}
+						<li class="nav-item ml-0">
+							<a class="nav-link mr-2" href="{% url 'cart-home' %}">{{ product_count }}</a>
+						</li>
+					{% endif %}
+		            <!--Buttons that link to pages allowing the user to sign up or login to their membership area-->
+		            
+	                {% if user.is_authenticated %}
+	                <!--Account link which only appears if user is logged in-->
+	                <div class="nav-item nav-buttons">
+	                	<a class="btn btn-primary mr-2" href="{% url 'profile' %}">Profile</a>
+	                	<a class="btn btn-danger mr-2" href="{% url 'logout' %}">Logout</a>
+	                </div>		            
+		            {% else %}
+		            <div class="nav-item nav-buttons">
+	                	<a class="btn btn-primary mr-2" href="{% url 'register' %}">Register</a>
+	                	<a class="btn btn-primary mr-2" href="{% url 'login' %}">Login</a>
+	                </div>
+		            {% endif %}
+		    	</ul>
+		    	<!--Social links in destop views wil be attached to the side of the page-->
+	            <div class="navbar-social-link ml-1"> 
+	                <a class="social-link" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+	                <a class="social-link" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
+	                <a class="social-link" href="https://www.linkedin.com/?hl=en" target="_blank"><i class="fa fa-linkedin"></i></a>
+	            </div>
+		    	<!--Contact and about page only appears in mobile views-->
+		        <div class="terms-privacy-navbar">
+		          	<div class="terms-privacy-navbar-links"> 
+		          		<span class="terms-privacy-link">&#169; 2019 BahWorks/span>
+		          		<div class="terms-privacy-navbar">
+				            <a id="terms-navbar" class="terms-privacy-link" href="{% url 'terms' %}">Terms</a><span class="terms-privacy-navbar-divider"> | </span><a id="privacy-navbar" class="terms-privacy-link" href="{% url 'privacy' %}">Privacy</a></p>
+			            </div>
+			        </div>
+		        </div>
+		  	</div>
+		</div>
+	</nav>
+	
+    <!--These social icons only display when the website is displayed in desktop views -->
+    <div class="icon-bar-desktop-views">
+		<a href="https://www.facebook.com/" target="_blank" class="icon-bar-facebook"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/" target="_blank" class="icon-bar-twitter"><i class="fa fa-twitter"></i></a> 
+		<a href="https://www.linkedin.com/?hl=en" target="_blank" class="icon-bar-linkedin"><i class="fa fa-linkedin"></i></a>
+	</div>
+
+	<div class="content">
+		{% block content %}
+		{% endblock content %}
+    </div>
+
+    <footer class="footer">
+		<div class="footer-top">
+			<div class="footer-container footer-top-container">
+	            <!--Links at the top of the footer section-->
+				<div class="footer-top-areas">
+					<!--Select the recipes by meal type-->
+					<div class="footer-section">
+						<h3 class="footer-header">About Us</h3>
+						<p class="footer-paragraph">BahWorks is the site where you can upload or bid on jobs where Bah Works is required. Get a professional design for your building project here, from inception to completion.</p>
+						<p class="footer-paragraph">For more information visit the <span class="footer-about-contact-link"><a href="{% url 'about' %}">about</a></span> page</p>
+					</div>
+					<!--Select recipes by allergen requirements-->
+					<div class="footer-section">
+						<h3 class="footer-header">Contact Us</h3>
+						<p class="footer-paragraph">Contact us by leaving us a message at the <span class="footer-about-contact-link"><a href="{% url 'contact' %}">contact</a></span> page, or using the following methods below:</p>
+						<div class="footer-contact options">
+							<p class="footer-paragraph" id="footer-paragraph-phone"><a href="tel://+461234123123">+46 1234 123123</a></p>
+							<p class="footer-paragraph" id="footer-paragraph-email"><a href="mailto:info@bahwork.com">info@bahwork.com</a></p>
+						</div>
+						<!--Social links in the footer-->
+						<div class="footer-social">
+			                <ul class="social-links">
+			                    <li class="social"><a class="dropdown-content-link social-link" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+			                    <li class="social"><a class="dropdown-content-link social-link" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+			                    <li class="social"><a class="dropdown-content-link social-link" href="https://www.linkedin.com/?hl=en" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+			                </ul>
+			            </div>
+	            
+					</div>
+					<!--Allow the user to select the pages that show the most recent and the most popular recipes-->
+					<div class="footer-section" id="footer-about-section">
+						<h3 class="footer-header">Useful Links</h3>
+						<p class="footer-paragraph">Visit the site:</p>
+						<div class="footer-contact options">
+							<p class="footer-paragraph footer-link"><a href="{% url 'jobs-home' %}">Jobs</a></p>
+							<p class="footer-paragraph footer-link"><a href="{% url 'job-create' %}">Upload a Job</a></p>
+							<p class="footer-paragraph footer-link"><a href="{% url 'blog-home' %}">Blog</a></p>		
+							<p class="footer-paragraph footer-link"><a href="{% url 'contact' %}">Contact</a></p>				
+							<p class="footer-paragraph footer-link"><a href="{% url 'shop-home' %}">Shop</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Bottom section of the footer-->
+		<div class="footer-bottom footer-bottom-container">
+			<div class="footer-container">
+	            <div class="footer-statement">
+	            	<!--Copyright statement-->
+	            	<p class="statement">&#169; 2019 BahWorks</p>
+	            	<div class="footer-contact-about">
+						<p class="footer-contact-about-links">
+							<!--Links to the contact and about pages-->
+							<span class="footer-contact-about-links-span"><a id="about-footer" class="terms-about-link" href="{% url 'terms' %}">Terms </a></span><span class="footer-contact-about-links-divider">|</span>
+				            <span class="footer-contact-about-links-span"><a id="contact-footer" class="terms-about-link" href="{% url 'privacy' %}">Privacy</a></span>
+				        </p>
+					</div>
+	            </div>
+	        </div>
+		</div>
+	</footer>
+
+	<!--Scripts to run-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	
+	<!--Javascript for checkout to only be used in the checkout page-->
+	{% block head_js %}
+	{% endblock head_js %}
+
+	<!--Javascript to be placed here only on the home page-->
+	{% block index_page_js %}
+	{% endblock index_page_js %}
+    
+</body>
+
+</html>

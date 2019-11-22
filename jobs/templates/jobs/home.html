@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Container for the jobs page content-->
+<div class="jobs-home-container">
+
+    <!--Heading for the job section-->
+    <div class="user-blog-header">
+        <h1 class="user-post-title"><i class="fa fa-laptop mr-3"></i>Latest Jobs Uploaded</h1>
+    </div>
+
+    <!--Container for the jobs cards-->
+    <div class="job-card-container">
+        <!--For loop to use following code for all the job cards-->
+        {% for job in jobs %}
+            <article class="job-article">
+                <div class="article-card-intro-top">
+                    <img class="job-image" src="{{ job.image.url }}">
+                    <div class="job-intro">
+                        <div class="article-metadata">
+                            <h2 class="job-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                            <p class="article-card-intro-author">Job uploaded by {{ job.author }}</a></p>
+                            <p class="article-card-intro-date">{{ job.date_posted|date:"dS F, Y" }}<p>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card-intro-description">
+                    <p class="article-card-intro-paragraph ml-1">{{ job.job_description|truncatewords:20 }}</p>
+                    <a class="btn btn-primary job-more-info" href="{% url 'job-detail' job.id %}">Visit Job</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+    <!--If there are more articles than the number given in the pagination section in the views.py file, then page buttons will appear to allow the user to navigate through the jobs-->
+    {% if is_paginated %}
+        <div class="paginate-buttons ml-3">
+
+            <!--Display first and previous button if page exists-->
+            {% if page_obj.has_previous %}
+                <a class="btn btn-primary" href="?page=1">First</a>
+                <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <!--Page numbers with links to the relative pages-->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                    <a class="btn btn-primary" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            <!--Display next and last button if page exists-->
+            {% if page_obj.has_next %}
+                <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>        
+    {% endif %}  
+
+    <div class="new-job-post-button">
+        <a class="btn btn-primary btn-small" href="{% url 'job-create' %}">Create New Job</a>
+    </div> 
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!--Content container-->
+<div class="container">
+	<div class="form-section">
+
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<legend class="border-bottom mb-4">Comment on job {{ job.title }}</legend>
+			<!--Crispy form to give the form a professional appearance-->
+			{{ form|crispy }}
+			<button class="btn btn-primary btn-block" type="submit">Submit Comment</button>
+		</form>
+
+	</div>
+</div>
+
+{% endblock content %}

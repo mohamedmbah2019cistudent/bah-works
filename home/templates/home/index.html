@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+<!--Javascript to be added to the head only if user is on the sites homepage-->
+{% block index_page_js %}
+	<script src="{% static 'js/frontimage.js' %}" type="text/javascript"></script>
+{% endblock index_page_js %}
+
+{% block content %}
+
+<!--Content container-->
+<div class="index-container">
+
+	<!--Top section of the site with the scrolling image. There are four different scrolling header sections-->
+	<header class="image-header-container">
+		<div class="slider">
+			<div class="slide" id="interior">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Welcome to BahWorks</h1>
+						<p class="slide-content-paragraph">If you have a building project that requires plans, working drawings, or creative designs and illustration, upload your project and find professionals.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'job-create' %}">Upload Project</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left" id="arrow-left-interior"></div>
+							<div class="arrow arrow-right" id="arrow-right-interior"></div>
+						</div>
+					</div>						
+				</div>
+			</div>
+			<div class="slide" id="extension">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Find Information</h1>
+						<p class="slide-content-paragraph">Get the latest news and information about Bah products and architecture and construction industry news here.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'blog-home' %}">See the Blog</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left" id="arrow-left-extension"></div>
+							<div class="arrow arrow-right" id="arrow-right-extension"></div>
+						</div>
+					</div>						
+				</div>
+			</div>
+			<div class="slide" id="plan">
+				<div class="slide-content">
+					<!--Text to be used in the scrolling images-->
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Get Started!</h1>
+						<p class="slide-content-paragraph">If you are looking to make a start in your career as a Bah Professional and start work today, take a look round our shop and find products to get you on your way.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'shop-home' %}">Shop</a></button>
+						<!--Arrows to allow the user to scroll through the headers. Scroll controlled in the 'frontimage.js' file-->
+						<div class="arrows">
+							<div class="arrow arrow-left" id="arrow-left-plan"></div>
+							<div class="arrow arrow-right" id="arrow-right-plan"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slide" id="architect">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Are you a Bah Professional?</h1>
+						<p class="slide-content-paragraph">If you are a construction Bah professional, connect with those looking for designs and get to work and upload your designs!</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'jobs-home' %}">View Jobs</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left" id="arrow-left-architect"></div>
+							<div class="arrow arrow-right" id="arrow-right-architect"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="index-content-container">
+		<!--The following div will be used to display the jobs and blogs in a row format on larger screen sizes-->
+		<div class="blog-jobs-large-screen-display">
+			<!--Introduction to the jobs section of the site with a quick overview, and links to the most recently uploaded jobs-->
+			<section class="home-page-job-section">
+				<div class="home-page-job-section-container">
+					<div class="home-page-job-intro">
+						<h2 class="home-page-section-heading"><i class="fa fa-laptop mr-3"></i>Latest Jobs</h2>
+						<p class="home-page-section-paragraph">These are the latest jobs that have been uploaded by our members. Speak to the job owners, and start uploading your work.</p>
+					</div>
+					<div class="home-page-job-card-container">
+						<!--For loop to use this code for the three most recently uploaded jobs to the site-->
+						{% for job in jobs %}
+						<article class="job-article-home-page">
+							<img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+							<div class="job-intro">
+								<div class="job-author-date">
+									<a class="mr-2" href="{% url 'public_profile' job.author.profile.id %}">{{ job.author }}</a>
+									<small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+								</div>
+								<h2 class="job-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+								<p class="article-card-intro">{{ job.job_overview|truncatewords:20 }}</p>
+							</div>
+						</article>
+						{% endfor %}
+					</div>
+					<a href="{% url 'jobs-home' %}" class="btn btn-primary btn-sm home-page-job-button">See more...</a>
+					<div class="end-home-page-blog-text">
+						<h4 class="end-home-page-blog-text-heading">Upload a job</h4>
+						<p class="end-home-page-blog-text-paragraph">If you have a project that requires professional Bah drawings or presentations, create it now.</p>
+						<a class="btn btn-primary" href="{% url 'job-create' %}">Create New Job</a>
+					</div>
+				</div>
+			</section>
+
+			<!--The aside will have a list of the current blog-->
+			<section class="index-blog-aside">
+				<div class="blog-aside-blogs">
+					<div class="blog-aside-intro-text">
+						<h2 class="blog-aside-intro-text-heading"><i class="fa fa-pencil mr-3"></i>BahWorks Blog</h2>
+						<p class="blog-aside-intro-text-paragraph">Welcome to our blog, where you learn from others if you are looking for work as a freelance Bah professional. You'll find articles about Bah packages, careers and small construction projects here.</p>
+					</div>
+					<div class="blog-card-container">
+						<div class="blog-card-container-heading">
+							<h3 class="recent-post-heading">Most recent posts</h3>
+						</div>
+						<div class="blog-card-container-cards">
+							<!--For loop to use the following code of reach of the blogs in the list-->
+							{% for post in posts %}
+							<article class="blog-details-other">
+								<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+								<div class="blog-intro">
+									<div class="blog-details-post-text">
+										<a class="blog-details-post-author mr-2" href="{% url 'public_profile' post.author.profile.id %}">{{ post.author }}</a>
+										<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+									</div>
+									<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+								</div>
+							</article>
+							{% endfor %}
+						</div>
+					</div>
+					<a href="{% url 'blog-home' %}" class="btn btn-primary btn-sm">See more...</a>
+					<div class="end-home-page-blog-text">
+						<h4 class="end-home-page-blog-text-heading">Upload your own post</h4>
+						<p class="end-home-page-blog-text-paragraph">Share your knowledge with others by uploading your own blog post. Create a new post today.</p>
+						<a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
+					</div>
+				</div>
+			</section>	
+		</div>
+
+		<!--Introduction and link to the shop-->
+		<section class="home-page-shop-section">
+			<img src="{% static 'images/products.png' %}" width="100%" height="auto">
+			<div class="home-page-shop-container">
+				<div class="home-page-shop-text">
+					<h3 class="home-page-shop-text-header"><i class="fa fa-shopping-cart mr-3"></i>BahWorks Shop</h3>
+					<p class="home-page-shop-text-paragraph">See our products and get started as a Bah professional today</p>
+					<a class="btn btn-primary" href="{% url 'shop-home' %}">Visit shop</a>
+				</div>
+			</div>
+		</section>
+	</div>
+
+</div>
+
+{% endblock %}
